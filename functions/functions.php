@@ -301,7 +301,6 @@ function gents_breadcrumb_lists() {
 			// JS at the bottom for fast page loading. 
 			// except for Modernizr which enables HTML5 elements & feature detects.
 			wp_enqueue_script('modernizr', get_template_directory_uri() . '/js/modernizr.custom.js', array('jquery'), '2.6.2', false);
-            wp_enqueue_script('magnific', get_template_directory_uri() . '/js/magnific.min.js', array('jquery'), '0.9.4', false);
         }
 
     }

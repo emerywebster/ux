@@ -20,7 +20,6 @@ function bootstrap_styles()
 	wp_register_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.0.3', 'all' );
 	wp_register_style( 'wpbase', get_template_directory_uri() . '/css/wpbase.min.css', array(), '3.0.3', 'all' );
 	wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.0.3', 'all' );
-	wp_register_style( 'magnific', get_template_directory_uri() . '/css/magnific.css', array(), '0.9.4', 'all' );
 	wp_register_style( 'theme-style', get_stylesheet_uri(), false, '3.0.3' );
 
 
@@ -28,7 +27,6 @@ function bootstrap_styles()
 	wp_enqueue_style( 'bootstrap' );
 	wp_enqueue_style( 'wpbase' );
 	wp_enqueue_style( 'font-awesome' );
-	wp_enqueue_style( 'magnific' );
 	wp_enqueue_style( 'theme-style' );
 	
 }
@@ -262,35 +260,7 @@ function add_class_the_tags($html){
 	return $html;
 }
 add_filter('the_tags','add_class_the_tags',10,1);
-?>
-<?php
-// adds the magnific jQuery code
-function insert_magnific_js() {
-	?>
-	<script type="text/javascript">
-    // <![CDATA[
-    jQuery(document).ready(function($){
-    	$("a[rel='magnific']").magnificPopup({
-    		type:'image'
-    	});
-    });  
-    // ]]>
-    </script>
-    <?php
-}
-add_action( 'wp_head', 'insert_magnific_js' );
-?>
-<?php
-// automatically add magnific rel attributes to embedded images
-function insert_magnific_rel($content) {
-	$pattern = '/<a(.*?)href="(.*?).(bmp|gif|jpeg|jpg|png)"(.*?)>/i';
-	$replacement = '<a$1href="$2.$3" rel=\'magnific\'$4>';
-	$content = preg_replace( $pattern, $replacement, $content );
-	return $content;
-}
-add_filter( 'the_content', 'insert_magnific_rel' );
-?>
-<?php
+
 //add svg support to WordPress uploader
 function cc_mime_types( $mimes ){
 	$mimes['svg'] = 'image/svg+xml';
